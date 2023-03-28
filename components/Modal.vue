@@ -28,9 +28,25 @@
 								</button>
 							</div>
 							<ul class="px-2 pt-4 pb-2 text-black">
-								<li>{{ "sad" }}</li>
-								<li>{{ "sad" }}</li>
-								<li>{{ "sad" }}</li>
+								<li class="text-xl">
+									<p v-if="celsius" class="mr-1 inline">
+										{{ weather.avgtemp_c ? weather.avgtemp_c : "" }}
+									</p>
+									<p v-if="!celsius" class="mr-1 inline">
+										{{ weather.avgtemp_f ? weather.avgtemp_f : "" }}
+									</p>
+									<button :class="{ 'text-black': celsius, 'text-gray-500': !celsius }" @click="celsius = true">°C</button>
+									<button :class="{ 'text-black': !celsius, 'text-gray-500': celsius }" @click="celsius = false">°F</button>
+								</li>
+								<li>
+									{{ weather.daily_chance_of_rain ? "Precipitation: " + weather.daily_chance_of_rain + "%" : "" }}
+								</li>
+								<li>
+									{{ weather.avghumidity ? "Humidity: " + weather.avghumidity + "%" : "" }}
+								</li>
+								<li>
+									{{ weather.maxwind_kph ? "Wind: " + weather.maxwind_kph + " km/h " + weather.maxwind_mph + " mph" : "" }}
+								</li>
 							</ul>
 						</DialogPanel>
 					</TransitionChild>
@@ -41,6 +57,8 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+
 const props = defineProps({
 	isOpen: {
 		type: Boolean,
@@ -55,4 +73,6 @@ const props = defineProps({
 		default: null,
 	},
 });
+
+const celsius = ref(true);
 </script>

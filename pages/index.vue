@@ -41,7 +41,7 @@ onMounted(() => {
 					weatherStore.fetchForecast(pos.coords.latitude, pos.coords.longitude, callbackAfterFetch);
 				},
 				(err) => {
-					console.log(err.message);
+					console.log(err);
 				},
 			);
 		}

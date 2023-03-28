@@ -5,19 +5,21 @@
 				<img :src="weatherStore.today.condition?.icon.replace('64x64', '128x128')" />
 			</div>
 			<div class="aos-left z-20 col-start-2 col-end-12 row-start-1 my-auto text-center text-white sm:col-start-6 sm:col-end-13">
-				<p>
+				<p class="max-w-2xl font-light md:text-lg lg:text-xl">
 					{{
 						(weatherStore.location.name ? weatherStore.location.name + " / " : "") +
 						(weatherStore.location.region ? weatherStore.location.region + " / " : "") +
 						(weatherStore.location.country ? weatherStore.location.country : "")
 					}}
 				</p>
-				<p>
+				<p class="max-w-2xl font-light md:text-lg lg:text-xl">
 					{{
 						(weatherStore.today.daily_chance_of_rain ? "Precipitation: " + weatherStore.today.daily_chance_of_rain + " / " : "") +
-						(weatherStore.today.avghumidity ? "Humidity: " + weatherStore.today.avghumidity + " / " : "") +
-						(weatherStore.today.maxwind_kph ? "Wind: " + weatherStore.today.maxwind_kph + " km/h " + weatherStore.today.maxwind_mph + " mph" : "")
+						(weatherStore.today.avghumidity ? "Humidity: " + weatherStore.today.avghumidity : "")
 					}}
+				</p>
+				<p class="max-w-2xl font-light md:text-lg lg:text-xl">
+					{{ weatherStore.today.maxwind_kph ? "Wind: " + weatherStore.today.maxwind_kph + " km/h " + weatherStore.today.maxwind_mph + " mph" : "" }}
 				</p>
 				<h1 class="mb-4 max-w-2xl text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl">{{ weatherStore.today.condition?.text }}</h1>
 				<p class="max-w-2xl font-light md:text-lg lg:text-xl">
